@@ -1,7 +1,7 @@
 var config_data = `
 {
   "dataFormat": "tsv",
-  "title": "Scouting PASS 2025",
+  "title": "4564 SCOUTING 2025",
   "page_title": "REEFSCAPE",
   "pitConfig": "true",
   "prematch": [
@@ -12,12 +12,12 @@ var config_data = `
     { "name": "Width",
       "code": "wid",
       "type": "number",
-      "defaultValue": "0"
+      "defaultValue": ""
     },
     { "name": "Weight",
       "code": "wei",
       "type": "number",
-      "defaultValue": "0"
+      "defaultValue": ""
     },
     { "name": "Drivetrain",
       "code": "drv",
