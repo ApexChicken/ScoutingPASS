@@ -80,15 +80,15 @@ var config_data = `
         },
         {
             "name": "Auto Consistency",
-            "code": "ac",
+            "code": "auc",
             "type": "radio",
             "choices": {
-                "1": "No auto/inconsistent<br>",
-                "2": "Hardly working Auto<br>",
-                "3": "Semi-functional Auto<br>",
-                "4": "Good auto<br>",
-                "5": "Great/perfect auto<br>",
-                "o": "Other (put in comments)<br>"
+                "1": "No auto/consistently bad auto<br>",
+                "2": "Poor auto, misses often<br>",
+                "3": "Decent auto, 50/50<br>",
+                "4": "Good auto, lands mostly<br>",
+                "5": "Perfect auto<br>",
+                "o": "Other"
             },
             "defaultValue": "o"
         },
