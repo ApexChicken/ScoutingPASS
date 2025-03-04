@@ -13,12 +13,12 @@ var config_data = `
         {
             "name": "Width",
             "code": "wi",
-            "type": "number",
+            "type": "number"
         },
         {
             "name": "length",
             "code": "le",
-            "type": "number",
+            "type": "number"
         },
         {
             "name": "Weight",
