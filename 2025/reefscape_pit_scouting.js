@@ -11,11 +11,14 @@ var config_data = `
             "type": "number"
         },
         {
-            "name": "Dimensions",
-            "code": "di",
-            "type": "text",
-            "size": 20,
-            "maxSize": 250
+            "name": "Width",
+            "code": "wi",
+            "type": "number",
+        },
+        {
+            "name": "length",
+            "code": "le",
+            "type": "number",
         },
         {
             "name": "Weight",
