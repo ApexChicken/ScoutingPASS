@@ -9,9 +9,11 @@ var config_data = `
       "code": "t",
       "type": "number"
     },
-    { "name": "Width",
-      "code": "wid",
-      "type": "number",
+    { "name": "Dimensions",
+      "code": "siz",
+      "type": "text",
+      "size": 20,
+      "maxsize" : 250
       "defaultValue": ""
     },
     { "name": "Weight",
@@ -25,17 +27,9 @@ var config_data = `
       "choices": {
         "s": "Swerve<br>",
         "w": "West Coast/Tank<br>",
-        "b": "Butterfly/Grashopper<br>",
-        "m": "Mechanum<br>",
         "o": "Other"
       },
       "defaultValue": "o"
-    },
-    { "name": "Other Drivetrain",
-      "code": "odt",
-      "type": "text",
-      "size": 20,
-      "maxSize": 50
     },
     { "name": "Swerve Ratio",
       "code": "sr",
@@ -79,12 +73,6 @@ var config_data = `
     },
     { "name": "Autos",
       "code": "aut",
-      "type": "text",
-      "size": 20,
-      "maxSize": 250
-    },
-    { "name": "Scouting Method /<br>Program (ScoutingPASS?)",
-      "code": "sct",
       "type": "text",
       "size": 20,
       "maxSize": 250
