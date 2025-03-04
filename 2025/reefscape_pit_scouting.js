@@ -61,22 +61,10 @@ var config_data = `
       },
       "defaultValue":"x"
     },
-    { "name": "Able to climb",
-      "code": "fpu",
-      "type": "bool"
-    },
-    { "name": "Coral Pickup",
-      "code": "fpu",
-      "type": "bool"
-    },
     { "name": "Floor pickup Coral",
       "code": "fpu",
       "type": "bool"
     },
-    { "name": "Algae Pickup",
-      "code": "fpu",
-      "type": "bool"
-    "
     { "name": "Floor pickup Algae",
       "code": "fpa",
       "type": "bool"
