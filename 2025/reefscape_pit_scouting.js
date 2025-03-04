@@ -62,7 +62,7 @@ var config_data = `
       "defaultValue":"x"
     },
     { "name": "Pickup Coral",
-      "code": "fpu",
+      "code": "pc",
       "type": "bool"
     },
     { "name": "Floor pickup Coral",
@@ -70,11 +70,11 @@ var config_data = `
       "type": "bool"
     },
     { "name": "Pickup Algae",
-      "code": "fpu",
+      "code": "pa",
       "type": "bool"
     },
     { "name": "Floor pickup Algae",
-      "code": "fpu",
+      "code": "fpa",
       "type": "bool"
     },
     { "name": "Autos",
