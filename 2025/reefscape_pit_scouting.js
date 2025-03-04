@@ -14,7 +14,6 @@ var config_data = `
       "type": "text",
       "size": 20,
       "maxsize" : 250
-      "defaultValue": ""
     },
     { "name": "Weight",
       "code": "wei",
