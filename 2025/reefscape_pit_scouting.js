@@ -88,7 +88,7 @@ var config_data = `
                 "3": "Semi-functional Auto<br>",
                 "4": "Good auto<br>",
                 "5": "Great/perfect auto<br>",
-                "o": "Other (put in comments)<br>",
+                "o": "Other (put in comments)<br>"
             },
             "defaultValue": "o"
         },
