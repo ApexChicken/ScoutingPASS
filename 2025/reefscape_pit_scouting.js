@@ -61,7 +61,15 @@ var config_data = `
       },
       "defaultValue":"x"
     },
+    { "name": "Pickup Coral",
+      "code": "fpu",
+      "type": "bool"
+    },
     { "name": "Floor pickup Coral",
+      "code": "fpu",
+      "type": "bool"
+    },
+    { "name": "Pickup Algae",
       "code": "fpu",
       "type": "bool"
     },
