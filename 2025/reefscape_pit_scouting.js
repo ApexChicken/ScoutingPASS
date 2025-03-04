@@ -10,10 +10,10 @@ var config_data = `
       "type": "number"
     },
     { "name": "Dimensions",
-      "code": "siz",
+      "code": "di",
       "type": "text",
       "size": 20,
-      "maxsize" : 250
+      "maxSize": 250
     },
     { "name": "Weight",
       "code": "wei",
