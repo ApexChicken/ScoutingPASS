@@ -81,6 +81,11 @@ var config_data = `
             "type": "bool"
         },
         {
+            "name": "Able to Climb / hang",
+            "code": "atc",
+            "type": "bool"
+        },
+        {
             "name": "Autos",
             "code": "aut",
             "type": "text",
