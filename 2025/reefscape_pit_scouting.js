@@ -35,20 +35,6 @@ var config_data = `
             "defaultValue": "o"
         },
         {
-            "name": "Swerve Ratio",
-            "code": "sr",
-            "type": "radio",
-            "choices": {
-                "1": "L1 (8.14:1)<br>",
-                "2": "L2 (6.75:1)<br>",
-                "3": "L3 (6.12:1)<br>",
-                "4": "L4 (5.14:1)<br>",
-                "o": "Other ratio (put in comments)<br>",
-                "x": "Not Swerve"
-            },
-            "defaultValue": "x"
-        },
-        {
             "name": "Drivetrain Motor",
             "code": "mot",
             "type": "radio",
@@ -93,11 +79,25 @@ var config_data = `
             "maxSize": 250
         },
         {
+            "name": "Auto Consistency",
+            "code": "ac",
+            "type": "radio",
+            "choices": {
+                "1": "No auto/inconsistent<br>",
+                "2": "Hardly working Auto<br>",
+                "3": "Semi-functional Auto<br>",
+                "4": "Good auto<br>",
+                "5": "Great/perfect auto<br>",
+                "o": "Other (put in comments)<br>",
+            },
+            "defaultValue": "o"
+        },
+        {
             "name": "Comments",
             "code": "co",
             "type": "text",
             "size": 20,
-            "maxSize": 250
+            "maxSize": 255
         }
     ],
     "auton": [],
