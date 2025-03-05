@@ -106,14 +106,13 @@ var config_data = `
             "code": "auc",
             "type": "radio",
             "choices": {
-                "1": "No auto/consistently bad auto<br>",
-                "2": "Poor auto, misses often<br>",
-                "3": "Decent auto, 50/50<br>",
-                "4": "Good auto, lands mostly<br>",
-                "5": "Perfect auto<br>",
-                "o": "Other"
+                "1": "1 *<br>",
+                "2": "2 **<br>",
+                "3": "3 ***<br>",
+                "4": "4 ****<br>",
+                "5": "5 *****<br>",
             },
-            "defaultValue": "o"
+            "defaultValue": "3"
         },
         {
             "name": "Comments",
@@ -127,11 +126,11 @@ var config_data = `
             "code": "sr",
             "type": "radio",
             "choices": {
-                "1": "Not reccomended at all<br>",
-                "2": "Advised against<br>",
-                "3": "Neutral<br>",
-                "4": "Reccomended<br>",
-                "5": "Highly Reccomended<br>"
+                "1": "1 *<br>",
+                "2": "2 **<br>",
+                "3": "3 ***<br>",
+                "4": "4 ****<br>",
+                "5": "5 *****<br>"
             },
             "defaultValue": "3"
         }
