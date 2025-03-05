@@ -44,7 +44,7 @@ var config_data = `
             "choices": {
                 "n": "Neo<br>",
                 "f": "Falcon<br>",
-                "c": "CIM<br>",
+                "c": "Kraken<br>",
                 "x": "Other<br>"
             },
             "defaultValue": "x"
@@ -70,8 +70,13 @@ var config_data = `
             "type": "bool"
         },
         {
-            "name": "Able to Climb / hang",
-            "code": "atc",
+            "name": "Able to Climb low",
+            "code": "acl",
+            "type": "bool"
+        },
+        {
+            "name": "Able to Climb high",
+            "code": "ach",
             "type": "bool"
         },
         {
@@ -101,6 +106,19 @@ var config_data = `
             "type": "text",
             "size": 20,
             "maxSize": 255
+        },
+        {
+            "name": "Scout Rating",
+            "code": "sr",
+            "type": "radio",
+            "choices": {
+                "1": "Not reccomended at all<br>",
+                "2": "Advised against<br>",
+                "3": "Neutral<br>",
+                "4": "Reccomended<br>",
+                "5": "Highly Reccomended<br>"
+            },
+            "defaultValue": "3"
         }
     ],
     "auton": [],
