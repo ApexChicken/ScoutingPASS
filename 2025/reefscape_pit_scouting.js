@@ -11,6 +11,11 @@ var config_data = `
             "type": "number"
         },
         {
+            "name": "Current rating",
+            "code": "cr",
+            "type": "number"
+        },
+        {
             "name": "Width",
             "code": "wi",
             "type": "number"
