@@ -85,6 +85,11 @@ var config_data = `
             "type": "bool"
         },
         {
+            "name": "Able to score Barge",
+            "code": "asb",
+            "type": "bool"
+        },
+        {
             "name": "Cycle time",
             "code": "ct",
             "type": "number"
