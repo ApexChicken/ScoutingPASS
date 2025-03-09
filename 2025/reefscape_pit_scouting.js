@@ -42,7 +42,7 @@ var config_data = `
                 "o": "Omnidrive<br>",
                 "e": "Other"
             },
-            "defaultValue": "o"
+            "defaultValue": "e"
         },
         {
             "name": "Drivetrain Motor",
