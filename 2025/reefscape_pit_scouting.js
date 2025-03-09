@@ -43,7 +43,8 @@ var config_data = `
             "choices": {
                 "s": "Swerve<br>",
                 "w": "West Coast/Tank<br>",
-                "o": "Other"
+                "o": "Omnidrive<br>"
+                "e": "Other"
             },
             "defaultValue": "o"
         },
