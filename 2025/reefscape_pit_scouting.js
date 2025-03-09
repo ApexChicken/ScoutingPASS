@@ -34,7 +34,7 @@ var config_data = `
         {
             "name": "# of cameras",
             "code": "noc",
-            "type": "number"
+            "type": "number",
             "defaultValue": ""
         },
         {
@@ -44,7 +44,7 @@ var config_data = `
             "choices": {
                 "s": "Swerve<br>",
                 "w": "West Coast/Tank<br>",
-                "o": "Omnidrive<br>"
+                "o": "Omnidrive<br>",
                 "e": "Other"
             },
             "defaultValue": "o"
