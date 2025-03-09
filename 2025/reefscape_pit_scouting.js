@@ -32,6 +32,11 @@ var config_data = `
             "defaultValue": ""
         },
         {
+            "name": "# of cameras",
+            "code": "noc",
+            "type": "number"
+            "defaultValue": ""
+        {
             "name": "Drivetrain",
             "code": "drv",
             "type": "radio",
