@@ -36,6 +36,7 @@ var config_data = `
             "code": "noc",
             "type": "number"
             "defaultValue": ""
+        },
         {
             "name": "Drivetrain",
             "code": "drv",
