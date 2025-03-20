@@ -54,7 +54,7 @@ var config_data = `
       "type": "team",
       "min": 1,
       "max": 99999
-    },
+    }
   ],
   "auton": [
     { "name": "Leave Starting Line",
@@ -160,7 +160,7 @@ var config_data = `
         "b": "Below average<br>",
         "a": "Average<br>",
         "g": "Good<br>",
-        "e": ""Excellent<br>",
+        "e": "Excellent<br>",
         "v": "Very Effective<br>",
         "x": "Not Observed"
       },
