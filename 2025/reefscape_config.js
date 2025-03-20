@@ -161,7 +161,6 @@ var config_data = `
         "a": "Average<br>",
         "g": "Good<br>",
         "e": "Excellent<br>",
-        "v": "Very Effective<br>",
         "x": "Not Observed"
       },
       "defaultValue": "x"
