@@ -40,7 +40,7 @@ var config_data = `
                 "s": "Swerve<br>",
                 "w": "West Coast/Tank<br>",
                 "o": "Omnidrive<br>",
-                "e": "Other"
+                "e": "Else"
             },
             "defaultValue": "e"
         },
@@ -52,7 +52,7 @@ var config_data = `
                 "n": "Neo<br>",
                 "f": "Falcon<br>",
                 "k": "Kraken<br>",
-                "x": "Other<br>"
+                "e": "Else<br>"
             },
             "defaultValue": "x"
         },
