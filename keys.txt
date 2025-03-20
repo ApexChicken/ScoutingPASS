@@ -1,0 +1,46 @@
+SCOUTING KEY
+
+
+
+PIT SCOUTING
+DRIVETRAIN
+s = swerve
+w = west coast/tank
+o = omnidrive
+e = else
+
+DT MOTOR
+n = neo
+f = falcon
+k = kraken
+e = else
+
+
+
+MATCH
+pickup from
+s = coral station
+f = floor
+b = both
+x = not attempted
+
+final position
+bp = parked
+ba = parked/failed climb
+bs = shallow cage
+bd = deep cage
+x = not attempted
+
+driver skill
+b = below average
+a = average
+g = good
+e = excellent
+x = not observed
+
+defense rating
+b = below average
+a = average
+g = good
+e = excellent
+x = did not play defense
