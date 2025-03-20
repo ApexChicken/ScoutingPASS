@@ -108,11 +108,11 @@ var config_data = `
             "code": "auc",
             "type": "radio",
             "choices": {
-                "1": "1 *<br>",
-                "2": "2 **<br>",
-                "3": "3 ***<br>",
-                "4": "4 ****<br>",
-                "5": "5 *****<br>"
+                "0": "0 (dosen't work)<br>",
+                "1": "1 (very innacurate)<br>",
+                "2": "2 <br>",
+                "3": "3 <br>",
+                "4": "4 (very accurate)<br>"
         },
             "defaultValue": "3"
         },
@@ -128,11 +128,10 @@ var config_data = `
             "code": "sr",
             "type": "radio",
             "choices": {
-                "1": "1 *<br>",
-                "2": "2 **<br>",
-                "3": "3 ***<br>",
-                "4": "4 ****<br>",
-                "5": "5 *****<br>"
+                "1": "1 (not reccomended)<br>",
+                "2": "2 <br>",
+                "3": "3 <br>",
+                "4": "4 (Highly Reccomended)<br>"
             },
             "defaultValue": "3"
         }
