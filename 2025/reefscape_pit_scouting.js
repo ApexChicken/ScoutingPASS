@@ -51,7 +51,7 @@ var config_data = `
             "choices": {
                 "n": "Neo<br>",
                 "f": "Falcon<br>",
-                "c": "Kraken<br>",
+                "k": "Kraken<br>",
                 "x": "Other<br>"
             },
             "defaultValue": "x"
