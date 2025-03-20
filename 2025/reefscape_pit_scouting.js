@@ -92,11 +92,6 @@ var config_data = `
             "type": "bool"
         },
         {
-            "name": "Cycle time",
-            "code": "ct",
-            "type": "number"
-        },
-        {
             "name": "Autos",
             "code": "aut",
             "type": "text",
