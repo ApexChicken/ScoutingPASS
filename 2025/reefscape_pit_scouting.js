@@ -77,12 +77,12 @@ var config_data = `
             "type": "bool"
         },
         {
-            "name": "Able to Climb low",
+            "name": "Able to Climb deep",
             "code": "acl",
             "type": "bool"
         },
         {
-            "name": "Able to Climb high",
+            "name": "Able to Climb shallow",
             "code": "ach",
             "type": "bool"
         },
