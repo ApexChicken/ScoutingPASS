@@ -184,8 +184,7 @@ var config_data = `
         "1": "1 (slow)<br>",
         "2": "2<br>",
         "3": "3<br>",
-        "4": "4<br>",
-        "5": "5 (fast)"
+        "4": "4 (Fast)<br>"
       },
       "defaultValue":"3"
     },
