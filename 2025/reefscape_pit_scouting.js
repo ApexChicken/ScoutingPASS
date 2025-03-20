@@ -112,6 +112,18 @@ var config_data = `
             "defaultValue": "3"
         },
         {
+            "name": "Build Quality",
+            "code": "auc",
+            "type": "radio",
+            "choices": {
+                "1": "Below average<br>",
+                "2": "Average<br>",
+                "3": "Good<br>",
+                "4": "Excellent<br>"
+        },
+            "defaultValue": "2"
+        },
+        {
             "name": "Comments",
             "code": "co",
             "type": "text",
