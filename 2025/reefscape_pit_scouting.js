@@ -8,7 +8,8 @@ var config_data = `
         {
             "name": "Team Number",
             "code": "t",
-            "type": "number"
+            "type": "number",
+            "required": "true"
         },
         {
             "name": "Width",
