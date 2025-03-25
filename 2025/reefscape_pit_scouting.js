@@ -8,8 +8,7 @@ var config_data = `
         {
             "name": "Team Number",
             "code": "t",
-            "type": "number",
-            "required": "true"
+            "type": "number"
         },
         {
             "name": "Width",
@@ -42,8 +41,7 @@ var config_data = `
                 "w": "West Coast/Tank<br>",
                 "o": "Omnidrive<br>",
                 "e": "Else"
-            },
-            "defaultValue": "e"
+                "u": "Unknown"
         },
         {
             "name": "Drivetrain Motor",
