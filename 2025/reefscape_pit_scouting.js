@@ -42,6 +42,7 @@ var config_data = `
                 "o": "Omnidrive<br>",
                 "e": "Else",
                 "u": "Unknown"
+                        }
         },
         {
             "name": "Drivetrain Motor",
