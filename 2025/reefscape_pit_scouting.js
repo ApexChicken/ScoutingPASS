@@ -40,7 +40,7 @@ var config_data = `
                 "s": "Swerve<br>",
                 "w": "West Coast/Tank<br>",
                 "o": "Omnidrive<br>",
-                "e": "Else"
+                "e": "Else",
                 "u": "Unknown"
         },
         {
