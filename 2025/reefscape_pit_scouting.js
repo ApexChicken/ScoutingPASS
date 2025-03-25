@@ -41,8 +41,8 @@ var config_data = `
                 "w": "West Coast/Tank<br>",
                 "o": "Omnidrive<br>",
                 "e": "Else<br>",
-                "u": "Unknown<br>"
-                        }
+            },
+            "defaultValue": ""
         },
         {
             "name": "Drivetrain Motor",
@@ -54,42 +54,77 @@ var config_data = `
                 "k": "Kraken<br>",
                 "e": "Else<br>"
             },
-            "defaultValue": "x"
+            "defaultValue": ""
         },
         {
             "name": "Pickup Coral",
             "code": "pc",
-            "type": "bool"
+            "type": "radio",
+            "choices": {
+                "y": "Yes<br>",
+                "n": "No<br>"
+            },
+            "defaultValue": ""
         },
         {
-            "name": "Floor pickup Coral",
+            "name": "Floor Pickup Coral",
             "code": "fpu",
-            "type": "bool"
+            "type": "radio",
+            "choices": {
+                "y": "Yes<br>",
+                "n": "No<br>"
+            },
+            "defaultValue": ""
         },
         {
             "name": "Pickup Algae",
             "code": "pa",
-            "type": "bool"
+            "type": "radio",
+            "choices": {
+                "y": "Yes<br>",
+                "n": "No<br>"
+            },
+            "defaultValue": ""
         },
         {
-            "name": "Floor pickup Algae",
+            "name": "Floor Pickup Algae",
             "code": "fpa",
-            "type": "bool"
+            "type": "radio",
+            "choices": {
+                "y": "Yes<br>",
+                "n": "No<br>"
+            },
+            "defaultValue": ""
         },
         {
-            "name": "Able to Climb deep",
-            "code": "acl",
-            "type": "bool"
+            "name": "Able to Climb Deep",
+            "code": "acd",
+            "type": "radio",
+            "choices": {
+                "y": "Yes<br>",
+                "n": "No<br>"
+            },
+            "defaultValue": ""
         },
         {
-            "name": "Able to Climb shallow",
-            "code": "ach",
-            "type": "bool"
+            "name": "Able to Climb Shallow",
+            "code": "acs",
+            "type": "radio",
+            "choices": {
+                "y": "Yes<br>",
+                "n": "No<br>"
+            },
+            "defaultValue": ""
         },
         {
-            "name": "Able to score Barge",
+            "name": "Able to Score Barge",
             "code": "asb",
-            "type": "bool"
+            "type": "radio",
+            "choices": {
+                "y": "Yes<br>",
+                "n": "No<br>"
+            },
+            "defaultValue": ""
         },
         {
             "name": "Autos",
@@ -108,20 +143,20 @@ var config_data = `
                 "2": "2 <br>",
                 "3": "3 <br>",
                 "4": "4 (very accurate)<br>"
-        },
-            "defaultValue": "3"
+            },
+            "defaultValue": ""
         },
         {
             "name": "Build Quality",
-            "code": "auc",
+            "code": "bq",
             "type": "radio",
             "choices": {
                 "1": "Below average<br>",
                 "2": "Average<br>",
                 "3": "Good<br>",
                 "4": "Excellent<br>"
-        },
-            "defaultValue": "2"
+            },
+            "defaultValue": ""
         },
         {
             "name": "Comments",
@@ -140,7 +175,7 @@ var config_data = `
                 "3": "3 <br>",
                 "4": "4 (Highly Reccomended)<br>"
             },
-            "defaultValue": "3"
+            "defaultValue": ""
         }
     ],
     "auton": [],
