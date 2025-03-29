@@ -138,7 +138,7 @@ var config_data = `
         "bd": "Deep Cage<br>",
         "x": "Not attempted"
       },
-      "defaultValue": "x"
+      "defaultValue": ""
     }
   ],
   "postmatch": [
