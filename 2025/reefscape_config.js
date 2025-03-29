@@ -163,7 +163,7 @@ var config_data = `
         "e": "Excellent<br>",
         "x": "Not Observed"
       },
-      "defaultValue": "x"
+      "defaultValue": ""
     },
     { "name": "Defense Rating",
       "code": "dr",
@@ -175,7 +175,7 @@ var config_data = `
         "e": "Excellent<br>",
         "x": "Did not play defense"
       },
-      "defaultValue": "x"
+      "defaultValue": ""
     },
     { "name": "Speed Rating",
       "code": "sr",
@@ -186,7 +186,7 @@ var config_data = `
         "3": "3<br>",
         "4": "4 (Fast)<br>"
       },
-      "defaultValue":"3"
+      "defaultValue":""
     },
     { "name": "Died/Immobilized",
       "code": "die",
