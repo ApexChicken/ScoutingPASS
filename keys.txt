@@ -13,6 +13,7 @@ DT MOTOR
 n = neo
 f = falcon
 k = kraken
+c = cim
 e = else
 
 
