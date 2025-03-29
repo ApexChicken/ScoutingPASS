@@ -120,7 +120,7 @@ var config_data = `
         "b": "Both<br>",
         "x": "Not Attempted"
       },
-      "defaultValue": "x"
+      "defaultValue": ""
     },
     { "name": "Scored in<br>Opponent<br>Processor",
       "code": "opp",
