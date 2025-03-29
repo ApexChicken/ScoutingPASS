@@ -40,8 +40,7 @@ var config_data = `
                 "s": "Swerve<br>",
                 "w": "West Coast/Tank<br>",
                 "o": "Omnidrive<br>",
-                "m": "Mechanum<br>",
-                "e": "Else<br>"
+                "m": "Mechanum<br>"
             },
             "defaultValue": ""
         },
