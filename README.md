@@ -2,6 +2,7 @@
 
 # Scouting P.A.S.S.
 
+#### Remixed Scouting FRC system by [ORANGE CHAOS - Team #4564](https://github.com/BrewerFRC).
 #### A scouting system for FIRST FRC competitions developed by [PWNAGE - Team #2451](https://pwnagerobotics.org).
 
 <a href="https://apexchicken.github.io/ScoutingPASS/">Live Demo Match</a> . <a href="https://apexchicken.github.io/ScoutingPASS/pit.html">Pit Scouting</a> . <a href="#getting-started">Getting Started</a> . <a href="#faq">FAQ</a>
