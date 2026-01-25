@@ -20,7 +20,7 @@ var config_data = `
       "required": "true"
     },
     
-    { "name": "length(in)",
+    { "name": "Length(in)",
       "code": "len",
       "type": "number",
       "defaultValue": "0"
@@ -44,7 +44,7 @@ var config_data = `
       "defaultValue": "0"
     },
 
-        { "name": "speed(m/s)",
+        { "name": "Speed(ft/s)",
       "code": "spd",
       "type": "number",
       "defaultValue": "0"
@@ -54,10 +54,13 @@ var config_data = `
       "code": "drv",
       "type": "radio",
       "choices": {
+        "b": "Butterfly/Grasshopper<br>",      
+        "m": "Mecanum<br>",
+        "o": "Omni<br>", 
         "s": "Swerve<br>",
-        "w": "West Coast/Tank<br>",
-        "b": "Butterfly/Grasshopper<br>",
-        "m": "Mecanum<br>"
+        "w": "West Coast/Tank<br>"
+
+
       },
       "defaultValue": "o"
     },
@@ -123,13 +126,14 @@ var config_data = `
         "defaultValue":"0"
     },
 
-        { "name": "Climb Sides",
-     "code": "cs",
+        { "name": "Climb Position",
+     "code": "cbpos",
      "type": "radio",
         "choices": {
             "l": "Left<br>",
             "c": "Center<br>",
-            "r": "Right<br>"
+            "r": "Right<br>",
+            "b": "Back<br>"
         },
         "defaultValue":"l"
     },
