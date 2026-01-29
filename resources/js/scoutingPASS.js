@@ -597,18 +597,45 @@ function addCheckbox(table, idx, name, data) {
     cell1.setAttribute("title", data.tooltip);
   }
   cell2.classList.add("field");
-  var inp = document.createElement("input");
-  inp.setAttribute("id", "input_" + data.code);
-  inp.setAttribute("type", "checkbox");
-  if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
-    inp.setAttribute("name", data.gsCol);
+  
+  // Handle checkboxes with multiple choices
+  if (data.hasOwnProperty('choices')) {
+    var checked = null
+    if (data.hasOwnProperty('defaultValue')) {
+      checked = data.defaultValue;
+    }
+    keys = Object.keys(data.choices);
+    keys.forEach(c => {
+      var inp = document.createElement("input");
+      inp.setAttribute("id", "input_" + data.code + "_" + c);
+      inp.setAttribute("type", "checkbox");
+      if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
+        inp.setAttribute("name", data.gsCol);
+      } else {
+        inp.setAttribute("name", data.code);
+      }
+      inp.setAttribute("value", c);
+      if (checked == c) {
+        inp.setAttribute("checked", "");
+      }
+      cell2.appendChild(inp);
+      cell2.innerHTML += data.choices[c];
+    });
   } else {
-    inp.setAttribute("name", data.code);
-  }
-  cell2.appendChild(inp);
+    // Handle single checkbox
+    var inp = document.createElement("input");
+    inp.setAttribute("id", "input_" + data.code);
+    inp.setAttribute("type", "checkbox");
+    if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
+      inp.setAttribute("name", data.gsCol);
+    } else {
+      inp.setAttribute("name", data.code);
+    }
+    cell2.appendChild(inp);
 
-  if (data.type == 'bool') {
-    cell2.innerHTML += "(checked = Yes)";
+    if (data.type == 'bool') {
+      cell2.innerHTML += "(checked = Yes)";
+    }
   }
 
   if (data.hasOwnProperty('defaultValue')) {

@@ -2,7 +2,7 @@ var config_data = `
 {
   "dataFormat": "tsv",
   "title": "Scouting PASS 2024",
-  "page_title": "<b>REBUILD</b>",
+  "page_title": "<b>REBUILT</b>",
   "pitConfig": "true",
   "prematch": [
 
@@ -20,7 +20,7 @@ var config_data = `
       "required": "true"
     },
     
-    { "name": "length(in)",
+    { "name": "Length(in)",
       "code": "len",
       "type": "number",
       "defaultValue": "0"
@@ -32,20 +32,8 @@ var config_data = `
       "defaultValue": "0"
     },
 
-    { "name": "Height(in)",
-      "code": "hei",
-      "type": "number",
-      "defaultValue": "0"
-    },
-    
     { "name": "Weight(lbs)",
       "code": "wei",
-      "type": "number",
-      "defaultValue": "0"
-    },
-
-        { "name": "speed(m/s)",
-      "code": "spd",
       "type": "number",
       "defaultValue": "0"
     },
@@ -54,10 +42,13 @@ var config_data = `
       "code": "drv",
       "type": "radio",
       "choices": {
+        "b": "Butterfly/Grasshopper<br>",      
+        "m": "Mecanum<br>",
+        "o": "Omni<br>", 
         "s": "Swerve<br>",
-        "w": "West Coast/Tank<br>",
-        "b": "Butterfly/Grasshopper<br>",
-        "m": "Mecanum<br>"
+        "w": "West Coast/Tank<br>"
+
+
       },
       "defaultValue": "o"
     },
@@ -74,27 +65,16 @@ var config_data = `
       "defaultValue":"x"
     },
 
-    {"name": "intake type",
-    "code": "it",
-    "type": "text",
-    "size": 20,
-    "maxSize": 100
-    },
-
-
     { "name": "fuel intake amount",
      "code": "fia",
      "type": "number",
      "defaultValue": "0"
     },
 
-    { "name": "number of limelights",
-     "code": "nol",
-     "type": "number",
-     "defaultValue": "0"
+    { "name": "Robot Has Limelight",
+     "code": "rhl",
+     "type": "bool;"
     },
-
-
 
     { "name": "Go over bump",
       "code": "gob",
@@ -106,36 +86,39 @@ var config_data = `
      "type": "bool"
     },
 
-    { "name": "can go under ladder",
-     "code": "gul",
-     "type": "bool"
+    { "name": "Pickup from",
+      "code": "pfd",
+      "type": "checkbox",
+      "choices": {
+        "d": "Depot<br>",
+        "n": "Neutral Zone<br>",
+        "o": "Outpost<br>"
+      }
     },
 
     { "name": "climb level",
      "code": "cl",
-     "type": "radio",
+     "type": "checkbox",
         "choices": {
             "0": "No climb<br>",
             "1": "Level 1<br>",
             "2": "Level 2<br>",
             "3": "Level 3<br>"
-        },
-        "defaultValue":"0"
+        }
     },
 
         { "name": "Climb Sides",
      "code": "cs",
-     "type": "radio",
+     "type": "checkbox",
         "choices": {
             "l": "Left<br>",
             "c": "Center<br>",
             "r": "Right<br>"
-        },
-        "defaultValue":"l"
+        }
     },
 
 
-    { "name": "Autos",
+    { "name": "Autos Description",
       "code": "aut",
       "type": "text",
       "size": 20,
@@ -144,13 +127,6 @@ var config_data = `
 
     { "name": "auto score amount",
      "code": "asa",
-     "type": "number",
-     "defaultValue": "0"
-    },
-
-
-    { "name": "avg fuel per second",
-     "code": "afps",
      "type": "number",
      "defaultValue": "0"
     },
