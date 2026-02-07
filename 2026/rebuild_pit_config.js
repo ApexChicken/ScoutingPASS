@@ -114,7 +114,7 @@ var config_data = `
             "l": "Left<br>",
             "c": "Center<br>",
             "r": "Right<br>"
-        },
+        }
     },
 
 
