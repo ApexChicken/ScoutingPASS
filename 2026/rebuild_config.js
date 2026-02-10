@@ -15,7 +15,7 @@ var config_data = `
     { "name": "Event",
       "code": "e",
       "type": "event",
-      "defaultValue": "2026pnst",
+      "defaultValue": "2026mefal",
       "required": "false"
     },
     { "name": "Match Level",
@@ -36,7 +36,7 @@ var config_data = `
       "max": 150,
       "required": "false"
     },
-    { "name": "Robot",
+    { "name": "Robot Position",
       "code": "r",
       "type": "robot",
       "choices": {
@@ -78,94 +78,75 @@ var config_data = `
       "code": "sih",
       "type": "bool"
     },
-    { "name": "Collect From Neutral",
-      "code": "cfn",
+
+    { "name": "Collect From Neutral Zone",
+      "code": "cfna",
       "type": "bool"
     }
+
   ],
   "teleop": [
-    { "name": "Full Sets of Coral Scored",
-      "code": "scs",
-      "type": "counter"
-    },
 
-    { "name": "Pickup From Neutral",
-      "code": "pfn",
+
+    { "name": "Pickup from Neutral Zone",
+      "code": "cfn",
       "type": "bool"
     },
-    { "name": "Pickup from depot",
+
+    { "name": "Pickup from Depot",
       "code": "pfd",
       "type": "bool"
     },
-    { "name": "goes under trench",
+
+    { "name": "Goes under Trench",
       "code": "gut",
       "type": "bool"
     },
-    { "name": "Goes Over Bump",
+    { "name": "Goes over Bump",
       "code": "gob",
       "type": "bool"
+    },
+
+    { "name": "Cycle Time (# of shooting cycles completed)",
+      "code": "ct",
+      "type": "counter"
     }
+
   ],
   "endgame": [
     { "name": "climb timer",
       "code": "clt",
       "type": "timer"
     },
-    { "name": "Final Robot Status",
-      "code": "efs",
+    { "name": "Climb level",
+      "code": "cl",
       "type": "radio",
       "choices": {
-        "bp": "Parked<br>",
-        "ba": "Parked/Failed Climb<br>",
-        "bb": "Level 1<br>",
-        "bc": "Level 2<br>",
-        "bd": "Level 3<br>",
-        
+        "l1": "L1<br>",
+        "l2": "L2<br>",
+        "l3": "L3<br>",
+        "fc": "Failed Climb<br>",
+        "bd": "No<br>",
         "x": "Not attempted"
       },
       "defaultValue": "x"
+    },
+
+    { "name": "Climb position",
+      "code": "clp",
+      "type": "radio",
+      "choices": {
+        "lt": "Left<br>",
+        "ct": "Center<br>",
+        "rt": "Right<br>",
+        "bk": "Back<br>"
+      } 
     }
+
+
   ],
   "postmatch": [
-    { "name": "Algae Left in Reef",
-      "code": "alr",
-      "type": "number",
-      "min": 0,
-      "max": 9,
-      "defaultValue": 0
-    },
-    { "name": "Driver Skill",
-      "code": "ds",
-      "type": "radio",
-      "choices": {
-        "b": "Bad<br>",
-        "a": "Average<br>",
-        "g": "Good<br>",
-        "x": "Not Observed"
-      },
-      "defaultValue": "x"
-    },
-    { "name": "Defense Rating",
-      "code": "dr",
-      "type": "radio",
-      "choices": {
-        "b": "Bad<br>",
-        "a": "Average<br>",
-        "g": "Good<br>",
-        "x": "Did not play defense"
-      },
-      "defaultValue": "x"
-    }, 
-    { "name": "Speed Rating",
-      "code": "sr",
-      "type": "radio",
-      "choices": {
-        "1": "1 (slow)<br>",
-        "2": "2<br>",
-        "3": "3 (fast)<br>"
-      },
-      "defaultValue":"2"
-    },
+
     { "name": "energized",
       "code": "egz",
       "type": "bool"
@@ -174,19 +155,31 @@ var config_data = `
       "code": "sch",
       "type": "bool"
     },
-    { "name": "Died/Immobilized",
-      "code": "die",
-      "type": "bool"
+
+    { "name": "Positive Attributes",
+      "code": "pa",
+      "type": "checkbox",
+      "choices": {
+        "mes": "Moved efficiently and smoothly<br>",
+        "pas": "Prevented other alliance from scoring<br>",
+        "ndp": "Did not draw penalties<br>"
+      }
+    
     },
-    { "name": "Tippy<br>(almost tipped over)",
-      "code": "tip",
-      "type": "bool"
+
+    { "name": "Negative Atrributes",
+      "code": "na",
+      "type": "checkbox",
+      "choices": {
+        "tll": "Took too long to line up wigth april tags<br>",
+        "rir": "Ran into objects/other robots<br>",
+        "bi": "Broke down/immobilized<br>",
+        "tu": "Tippy/unsturdy<br>"
+      }
+    
     },
-    { "name": "Make good<br>alliance partner?",
-      "tooltip": "Would you want this robot on your alliance in eliminations?",
-      "code": "all",
-      "type": "bool"
-    },
+
+
     { "name": "Comments",
       "code": "co",
       "type": "text",
