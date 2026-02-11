@@ -113,6 +113,17 @@ var config_data = `
         }
     },
 
+        { "name": "Climb Sides",
+     "code": "cs",
+     "type": "checkbox",
+        "choices": {
+            "l": "Left<br>",
+            "c": "Center<br>",
+            "r": "Right<br>"
+        }
+    },
+
+
     { "name": "Autos Description",
       "code": "aut",
       "type": "text",
