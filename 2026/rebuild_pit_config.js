@@ -20,32 +20,20 @@ var config_data = `
       "required": "true"
     },
     
-    { "name": "Length(in)",
+    { "name": "Length(in) w/bumper",
       "code": "len",
       "type": "number",
       "defaultValue": "0"
     },
 
-    { "name": "Width(in)",
+    { "name": "Width(in) w/bumper",
       "code": "wid",
       "type": "number",
       "defaultValue": "0"
     },
 
-    { "name": "Height(in)",
-      "code": "hei",
-      "type": "number",
-      "defaultValue": "0"
-    },
-    
-    { "name": "Weight(lbs)",
+    { "name": "Weight(lbs) w/battery",
       "code": "wei",
-      "type": "number",
-      "defaultValue": "0"
-    },
-
-        { "name": "Speed(ft/s)",
-      "code": "spd",
       "type": "number",
       "defaultValue": "0"
     },
@@ -69,19 +57,25 @@ var config_data = `
       "code": "mot",
       "type": "radio",
       "choices": {
-        "n": "Neo<br>",
-        "f": "Falcon<br>",
         "c": "CIM<br>",
-        "k": "Kraken<br>"
+        "f": "Falcon<br>",
+        "k44": "Kraken X44<br>",
+        "k60p": "Kraken X60<br>",
+        "n": "Neo<br>",
+        "n550": "Neo 550<br>",
+        "nv": "Neo Vortex<br>"
       },
-      "defaultValue":"x"
+      "defaultValue":"c"
     },
 
-    {"name": "intake type",
-    "code": "it",
-    "type": "text",
-    "size": 20,
-    "maxSize": 100
+    { "name": "Pickup from",
+      "code": "pfd",
+      "type": "checkbox",
+      "choices": {
+        "d": "Depot<br>",
+        "n": "Neutral Zone<br>",
+        "o": "Outpost<br>"
+      }
     },
 
 
@@ -91,13 +85,10 @@ var config_data = `
      "defaultValue": "0"
     },
 
-    { "name": "number of limelights",
-     "code": "nol",
-     "type": "number",
-     "defaultValue": "0"
+    { "name": "Robot Has Limelight",
+     "code": "rhl",
+     "type": "bool;"
     },
-
-
 
     { "name": "Go over bump",
       "code": "gob",
@@ -109,37 +100,31 @@ var config_data = `
      "type": "bool"
     },
 
-    { "name": "can go under ladder",
-     "code": "gul",
-     "type": "bool"
-    },
+
 
     { "name": "climb level",
      "code": "cl",
-     "type": "radio",
+     "type": "checkbox",
         "choices": {
             "0": "No climb<br>",
             "1": "Level 1<br>",
             "2": "Level 2<br>",
             "3": "Level 3<br>"
-        },
-        "defaultValue":"0"
+        }
     },
 
-        { "name": "Climb Position",
-     "code": "cbpos",
-     "type": "radio",
+        { "name": "Climb Sides",
+     "code": "cs",
+     "type": "checkbox",
         "choices": {
             "l": "Left<br>",
             "c": "Center<br>",
-            "r": "Right<br>",
-            "b": "Back<br>"
-        },
-        "defaultValue":"l"
+            "r": "Right<br>"
+        }
     },
 
 
-    { "name": "Autos",
+    { "name": "Autos Description",
       "code": "aut",
       "type": "text",
       "size": 20,
@@ -148,13 +133,6 @@ var config_data = `
 
     { "name": "auto score amount",
      "code": "asa",
-     "type": "number",
-     "defaultValue": "0"
-    },
-
-
-    { "name": "avg fuel per second",
-     "code": "afps",
      "type": "number",
      "defaultValue": "0"
     },
