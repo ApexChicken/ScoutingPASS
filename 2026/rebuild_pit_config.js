@@ -20,19 +20,19 @@ var config_data = `
       "required": "true"
     },
     
-    { "name": "Length(in)",
+    { "name": "Length(in) w/bumper",
       "code": "len",
       "type": "number",
       "defaultValue": "0"
     },
 
-    { "name": "Width(in)",
+    { "name": "Width(in) w/bumper",
       "code": "wid",
       "type": "number",
       "defaultValue": "0"
     },
 
-    { "name": "Weight(lbs)",
+    { "name": "Weight(lbs) w/battery",
       "code": "wei",
       "type": "number",
       "defaultValue": "0"
@@ -57,13 +57,27 @@ var config_data = `
       "code": "mot",
       "type": "radio",
       "choices": {
-        "n": "Neo<br>",
-        "f": "Falcon<br>",
         "c": "CIM<br>",
-        "k": "Kraken<br>"
+        "f": "Falcon<br>",
+        "k44": "Kraken X44<br>",
+        "k60p": "Kraken X60<br>",
+        "n": "Neo<br>",
+        "n550": "Neo 550<br>",
+        "nv": "Neo Vortex<br>"
       },
-      "defaultValue":"x"
+      "defaultValue":"c"
     },
+
+    { "name": "Pickup from",
+      "code": "pfd",
+      "type": "checkbox",
+      "choices": {
+        "d": "Depot<br>",
+        "n": "Neutral Zone<br>",
+        "o": "Outpost<br>"
+      }
+    },
+
 
     { "name": "fuel intake amount",
      "code": "fia",
@@ -86,15 +100,7 @@ var config_data = `
      "type": "bool"
     },
 
-    { "name": "Pickup from",
-      "code": "pfd",
-      "type": "checkbox",
-      "choices": {
-        "d": "Depot<br>",
-        "n": "Neutral Zone<br>",
-        "o": "Outpost<br>"
-      }
-    },
+
 
     { "name": "climb level",
      "code": "cl",
