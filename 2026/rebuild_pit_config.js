@@ -60,7 +60,7 @@ var config_data = `
         "c": "CIM<br>",
         "f": "Falcon<br>",
         "k44": "Kraken X44<br>",
-        "k60p": "Kraken X60<br>",
+        "k60": "Kraken X60<br>",
         "n": "Neo<br>",
         "n550": "Neo 550<br>",
         "nv": "Neo Vortex<br>"
@@ -79,32 +79,32 @@ var config_data = `
     },
 
 
-    { "name": "fuel intake amount",
+    { "name": "Fuel Intake Amount",
      "code": "fia",
      "type": "number",
      "defaultValue": "0"
     },
 
-    { "name": "Robot Has Limelight",
-     "code": "rhl",
-     "type": "bool;"
+    { "name": "Is Vision Tracking Used",
+      "code": "ivtu",
+      "type": "bool;"
     },
 
-    { "name": "Go over bump",
+    { "name": "Go Over Bump",
       "code": "gob",
       "type": "bool"
     },
 
-    { "name": "can go under trench",
+    { "name": "Can go Under Trench",
      "code": "gut",
      "type": "bool"
     },
 
 
 
-    { "name": "climb level",
-     "code": "cl",
-     "type": "checkbox",
+    { "name": "Climb Level",
+        "code": "cl",
+        "type": "checkbox",
         "choices": {
             "0": "No climb<br>",
             "1": "Level 1<br>",
@@ -113,17 +113,6 @@ var config_data = `
         }
     },
 
-        { "name": "Climb Sides",
-     "code": "cs",
-     "type": "checkbox",
-        "choices": {
-            "l": "Left<br>",
-            "c": "Center<br>",
-            "r": "Right<br>"
-        }
-    },
-
-
     { "name": "Autos Description",
       "code": "aut",
       "type": "text",
@@ -131,7 +120,7 @@ var config_data = `
       "maxSize": 250
     },
 
-    { "name": "auto score amount",
+    { "name": "Auto score amount",
      "code": "asa",
      "type": "number",
      "defaultValue": "0"
