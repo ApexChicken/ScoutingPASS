@@ -1,7 +1,7 @@
 var config_data = `
 {
   "dataFormat": "tsv",
-  "title": "Scouting PASS 2024",
+  "title": "Scouting PASS 2026",
   "page_title": "<b>REBUILT</b>",
   "pitConfig": "true",
   "prematch": [
@@ -68,14 +68,19 @@ var config_data = `
       "defaultValue":"c"
     },
 
+
     { "name": "Pickup from",
-      "code": "pfd",
-      "type": "checkbox",
+      "code": "pf",
+      "type": "radio",
       "choices": {
         "d": "Depot<br>",
-        "n": "Neutral Zone<br>",
-        "o": "Outpost<br>"
-      }
+        "nz": "Neutral Zone<br>",
+        "o": "Outpost<br>",
+        "dnz": "Depot & Neutral Zone<br>",
+        "nzo": "Neutral Zone & Outpost<br>",
+        "all": "All Zones<br>"
+      },
+      "defaultValue":"d"
     },
 
 
@@ -87,7 +92,7 @@ var config_data = `
 
     { "name": "Is Vision Tracking Used",
       "code": "ivtu",
-      "type": "bool;"
+      "type": "bool"
     },
 
     { "name": "Go Over Bump",
@@ -101,16 +106,16 @@ var config_data = `
     },
 
 
-
     { "name": "Climb Level",
-        "code": "cl",
-        "type": "checkbox",
-        "choices": {
-            "0": "No climb<br>",
-            "1": "Level 1<br>",
-            "2": "Level 2<br>",
-            "3": "Level 3<br>"
-        }
+      "code": "dik",
+      "type": "radio",
+      "choices": {
+        "0": "No Climb<br>",
+        "1": "Level 1<br>",
+        "2": "Level 2<br>",
+        "3": "Level 3<br>"
+      },
+      "defaultValue":"0"
     },
 
     { "name": "Autos Description",
