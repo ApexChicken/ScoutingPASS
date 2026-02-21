@@ -3,7 +3,7 @@ var config_data = `
   "dataFormat": "tsv",
   "title": "Scouting PASS 2026",
   "page_title": "<b>REBUILT</b>",
-  "checkboxAs": "10",
+  "checkboxAs": "TF",
   "prematch": [
     { "name": "Scouter Name",
       "code": "s",

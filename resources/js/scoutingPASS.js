@@ -877,10 +877,16 @@ function getData(dataFormat) {
   UniqueFieldNames.forEach((fieldname) => {
     var thisField = Form[fieldname];
 
-    if (thisField.type == 'checkbox') {
+    // Handle groups of inputs (e.g., multiple checkboxes sharing a name)
+    if (thisField && thisField.length && thisField[0].type == 'checkbox') {
+      // Multiple-choice checkbox group: collect checked values
+      var vals = Array.from(thisField).filter(el => el.checked).map(el => el.value);
+      var thisFieldValue = vals.length ? vals.join(' ') : "";
+    } else if (thisField && thisField.type == 'checkbox') {
+      // Single checkbox
       var thisFieldValue = thisField.checked ? checkedChar : uncheckedChar;
     } else {
-      var thisFieldValue = thisField.value
+      var thisFieldValue = thisField && thisField.value
         ? thisField.value.replace(/"/g, '').replace(/;/g, "-").replace(/\|/g, "-")
         : "";
     }
