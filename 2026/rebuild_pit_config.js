@@ -68,21 +68,16 @@ var config_data = `
       "defaultValue":"c"
     },
 
-
-    { "name": "Pickup from",
+    { "name": "Pickup From",
       "code": "pf",
-      "type": "radio",
+      "type": "checkbox",
       "choices": {
         "d": "Depot<br>",
         "nz": "Neutral Zone<br>",
-        "o": "Outpost<br>",
-        "dnz": "Depot & Neutral Zone<br>",
-        "nzo": "Neutral Zone & Outpost<br>",
-        "all": "All Zones<br>"
+        "o": "Outpost<br>"
       },
-      "defaultValue":"d"
+      "defaultValue": ""
     },
-
 
     { "name": "Fuel Intake Amount",
      "code": "fia",
@@ -117,6 +112,19 @@ var config_data = `
       },
       "defaultValue":"0"
     },
+
+    { "name": "Climb Level",
+      "code": "cl",
+      "type": "checkbox",
+      "choices": {
+        "0": "No Climb<br>",
+        "1": "Level 1<br>",
+        "2": "Level 2<br>",
+        "3": "Level 3<br>"
+      },
+      "defaultValue": "0"
+    },
+
 
     { "name": "Autos Description",
       "code": "aut",
