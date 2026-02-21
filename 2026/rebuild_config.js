@@ -126,7 +126,6 @@ var config_data = `
         "l2": "L2<br>",
         "l3": "L3<br>",
         "fc": "Failed Climb<br>",
-        "bd": "No<br>",
         "x": "Not attempted"
       },
       "defaultValue": "x"
