@@ -113,19 +113,6 @@ var config_data = `
       "defaultValue":"0"
     },
 
-    { "name": "Climb Level",
-      "code": "cl",
-      "type": "checkbox",
-      "choices": {
-        "0": "No Climb<br>",
-        "1": "Level 1<br>",
-        "2": "Level 2<br>",
-        "3": "Level 3<br>"
-      },
-      "defaultValue": "0"
-    },
-
-
     { "name": "Autos Description",
       "code": "aut",
       "type": "text",
@@ -133,7 +120,7 @@ var config_data = `
       "maxSize": 250
     },
 
-    { "name": "Auto score amount",
+    { "name": "Auto Score Amount",
      "code": "asa",
      "type": "number",
      "defaultValue": "0"

@@ -88,21 +88,21 @@ var config_data = `
   "teleop": [
 
 
-    { "name": "Pickup from Neutral Zone",
+    { "name": "Pickup From Neutral Zone",
       "code": "cfn",
       "type": "bool"
     },
 
-    { "name": "Pickup from Depot",
+    { "name": "Pickup From Depot",
       "code": "pfd",
       "type": "bool"
     },
 
-    { "name": "Goes under Trench",
+    { "name": "Goes Under Trench",
       "code": "gut",
       "type": "bool"
     },
-    { "name": "Goes over Bump",
+    { "name": "Goes Over Bump",
       "code": "gob",
       "type": "bool"
     },
@@ -114,11 +114,11 @@ var config_data = `
 
   ],
   "endgame": [
-    { "name": "climb timer",
+    { "name": "Climb Timer",
       "code": "clt",
       "type": "timer"
     },
-    { "name": "Climb level",
+    { "name": "Climb Level",
       "code": "cl",
       "type": "radio",
       "choices": {
@@ -131,7 +131,7 @@ var config_data = `
       "defaultValue": "x"
     },
 
-    { "name": "Climb position",
+    { "name": "Climb Position",
       "code": "clp",
       "type": "radio",
       "choices": {
@@ -146,11 +146,11 @@ var config_data = `
   ],
   "postmatch": [
 
-    { "name": "energized",
+    { "name": "Energized",
       "code": "egz",
       "type": "bool"
     },
-    { "name": "supercharged",
+    { "name": "Supercharged",
       "code": "sch",
       "type": "bool"
     },
