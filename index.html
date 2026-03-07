@@ -1,109 +1,466 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1.0">
-		<title>Scouting PASS</title>
-		<link rel="shortcut icon" href="favicon.ico">
-		<link rel="icon" sizes="16x16 32x32 64x64" href="favicon.ico">
-		<script src="resources/js/easy.qrcode.min.js"></script>
-		<script src="resources/js/TBAInterface.js"></script>
-		<script src="resources/js/scoutingPASS.js"></script>
-		<script src="2026/rebuild_config.js"></script>
-		<link rel="stylesheet" href="resources/css/scoutingPASS.css">
-	</head>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1.0">
+  <title>Scouting PASS</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="icon" sizes="16x16 32x32 64x64" href="favicon.ico">
+  <script src="resources/js/easy.qrcode.min.js"></script>
+  <script src="resources/js/TBAInterface.js"></script>
+  <script src="resources/js/scoutingPASS.js"></script>
+  <script src="2026/rebuild_config.js"></script>
+  <link rel="stylesheet" href="resources/css/scoutingPASS.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@400;500&display=swap">
+  <style>
+    :root {
+      --or: #FF5500;
+      --or-glow: rgba(255,85,0,0.18);
+      --bg: #0a0a0a;
+      --panel: #101010;
+      --panel2: #151515;
+      --border: #252525;
+      --text: #e0e0e0;
+      --dim: #666;
+      --mono: 'Share Tech Mono', monospace;
+      --head: 'Barlow Condensed', sans-serif;
+      --body: 'Barlow', sans-serif;
+    }
 
-	<body>
-		<form id="scoutingForm" onsubmit="return false" name="scoutingForm">
-			<div id="main-panel-holder">
-				<div id="prematch" class="main-panel" style="background-color: black;">
-				<h1 id="prematchHeader1" class="page_title" style="color: white; font-weight: bold;">ORANGE CHAOS 4564<br>Scouting 2026</h1>
-					<h2 id="prematchHeader2">pre-match</h2>
-					<p class="match-label"><input type="button" value="Next" id="nextButton1" onclick="swipePage(1)"></p>
-					<table id="prematch_table" style="font: Roboto">
-					<!-- ###PRE-MATCH-COMPONENTS###-->
-					</table>
-					<p class="match-label"><input type="button" value="Next" id="nextButton2" onclick="swipePage(1)"></p>
-				</div>
+    /* ── SCANLINES ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.035) 2px, rgba(0,0,0,0.035) 4px);
+      pointer-events: none; z-index: 9000;
+    }
 
-				<div id="auton" class="main-panel" style="background-color: black;">
-				<h1 id="autonHeader1" class="page_title" style="color: white; font-weight: bold;">ORANGE CHAOS 4564<br>Scouting 2026</h1>
-					<h2 id="autonHeader2">Auton</h2>
-					<p class="match-label"><input type="button" value="Prev" id="prevButton1" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton3" onclick="swipePage(1)"></p>
-					<table id="auton_table">
-					<!-- ###AUTON-COMPONENTS###-->
-					</table>
-					<p class="match-label"><input type="button" value="Prev" id="prevButton2" onclick="swipePage(-1)"> <input type="button" value="Next" id="nextButton4" onclick="swipePage(1)"></p>
-				</div>
+    /* ── FIXED HEADER ── */
+    #oc-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      height: 58px;
+      background: var(--panel);
+      border-bottom: 2px solid var(--or);
+      box-shadow: 0 2px 30px var(--or-glow);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 18px;
+    }
+    #oc-header .title {
+      font-family: var(--head);
+      font-weight: 900; font-size: 21px;
+      letter-spacing: 4px; color: var(--or);
+      text-transform: uppercase;
+    }
+    #oc-header .subtitle {
+      font-family: var(--mono);
+      font-size: 10px; color: var(--dim); letter-spacing: 2px;
+    }
+    #oc-header .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--or); box-shadow: 0 0 8px var(--or);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.25;} }
 
-				<div id="teleop" class="main-panel" style="background-color: black;">
-				<h1 id="teleopHeader1" class="page_title" style="color: white; font-weight: bold;">ORANGE CHAOS 4564<br>Scouting 2026</h1>
-					<h2 id="teleopHeader2" >Teleop</h2>
-					<p class="match-label"><input type="button" value="Prev" id="prevButton3" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton5" onclick="swipePage(1)"></p>
-					<table id="teleop_table">
-						<!-- ###TELEOP-COMPONENTS###-->
-					</table>
-					<p class="match-label"><input type="button" value="Prev" id="prevButton4" onclick="swipePage(-1)"> <input type="button" value="Next" id="nextButton6" onclick="swipePage(1)"></p>
-				</div>
+    /* ── TAB BAR ── */
+    #oc-tabs {
+      position: fixed; top: 58px; left: 0; right: 0; z-index: 499;
+      height: 38px; background: var(--panel2);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+    }
+    .oc-tab {
+      flex: 1; background: none; border: none;
+      border-right: 1px solid var(--border);
+      color: var(--dim); font-family: var(--mono);
+      font-size: 9px; letter-spacing: 1.5px;
+      text-transform: uppercase; cursor: pointer;
+      transition: color .15s, background .15s;
+      position: relative;
+    }
+    .oc-tab:last-child { border-right: none; }
+    .oc-tab.active {
+      color: var(--or);
+      background: rgba(255,85,0,0.06);
+    }
+    .oc-tab.active::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--or); box-shadow: 0 0 6px var(--or);
+    }
 
-				<div id="endgame" class="main-panel" style="background-color: black;">
-				<h1 id="endgameHeader1" class="page_title" style="color: white; font-weight: bold;">ORANGE CHAOS 4564<br>Scouting 2026</h1>
-					<h2 id="endgameHeader2">Endgame</h2>
-					<p class="match-label"><input type="button" value="Prev" id="prevButton5" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton7" onclick="swipePage(1)"></p>
-					<table id="endgame_table">
-						<!-- ###ENDGAME-COMPONENTS###-->
-					</table>
-					<p class="match-label"><input type="button" value="Prev" id="prevButton6" onclick="swipePage(-1)"> <input type="button" value="Next" id="nextButton8" onclick="swipePage(1)"></p>
-				</div>
+    /* ── PROGRESS BAR ── */
+    #oc-progress {
+      position: fixed; top: 94px; left: 0;
+      height: 2px; z-index: 498;
+      background: var(--or);
+      box-shadow: 0 0 8px var(--or);
+      transition: width .35s cubic-bezier(.4,0,.2,1);
+    }
 
-				<div id="post-match" class="main-panel" style="background-color: black;">
-				<h1 id="postmatchHeader" class="page_title" style="color: white; font-weight: bold;">ORANGE CHAOS 4564<br>Scouting 2026</h1>
-					<h2>Miscellaneous</h2>
-					<p class="match-label"><input type="button" value="Prev" id="prevButton7" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton9" onclick="swipePage(1)"></p>
-					<table id="postmatch_table">
-						<!-- ###POST-MATCH-COMPONENTS###-->
-					</table>
-					<p class="match-label"><input type="button" value="Prev" id="prevButton8" onclick="swipePage(-1)"> <input type="button" value="Next" id="nextButton10" onclick="swipePage(1)"></p>
-				</div>
+    /* ── BOTTOM NAV ── */
+    #oc-nav {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+      height: 54px; background: var(--panel);
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center;
+      justify-content: space-between; padding: 0 16px;
+    }
+    .oc-nav-btn {
+      font-family: var(--head); font-weight: 700;
+      font-size: 13px; letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 9px 24px; border-radius: 2px;
+      cursor: pointer; border: none; transition: all .15s;
+    }
+    #oc-prev {
+      background: transparent;
+      border: 1px solid var(--border) !important;
+      color: var(--dim);
+    }
+    #oc-prev:hover { border-color: var(--or) !important; color: var(--or); }
+    #oc-next {
+      background: var(--or); color: #000;
+      box-shadow: 0 0 18px var(--or-glow);
+    }
+    #oc-next:hover { background: #ff6820; }
+    #oc-next:active, #oc-prev:active { transform: scale(.97); }
+    .oc-step { font-family: var(--mono); font-size: 10px; color: var(--dim); }
 
-				<div id="qr-code" class="main-panel" style="background-color: white;">
-				<h1 id="qrHeader1" class="page_title" style="color: white; font-weight: bold;">ORANGE CHAOS 4564<br>Scouting 2026</h1>
-					<h2 id="qrHeader2">Generate Export File</h2>
-					<p class="match-label"><input type="button" value="Prev" id="prevButton9" onclick="swipePage(-1)"></p>
-					<p id="export-info"><span id="display_export-info" style="border: none; text-align: center;"></span></p>
-					<script>
-    					window.goatcounter = { path: function(p) { return location.host + p }}
-					</script>
-					<script data-goatcounter="https://scoutingpass.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-					<div id="submitButton">
-						<button id="exportButton" type="button" class="submitForm" onclick="generateExportFile()">Generate Export File</button>
-					</div>
-					<p id="export-status" style="text-align:center"></p>
-					<h3 style="text-align:center">Backup QR Code</h3>
-					<p id="qr-info"><span id="display_qr-info" style="border: none; text-align: center;"></span></p>
-					<table id="qr-table"><tr><td width="5%">&nbsp;</td><td width="90%">
-						<div id="qrcode" style="text-align:center">
-							<script>
-						// Create QRCode Object
-								qr = new QRCode(document.getElementById("qrcode"), options)
-					</script>
-					</div>
-				</td><td width="5%">&nbsp;</td></tr>
-				<tr><td width="5%">&nbsp;</td><td width="90%">
-					<div>
-						<p id="data" style="text-align:center"></p>
-					</div>
-				</td><td width="5%">&nbsp;</td></tr>
-			</table>
-					<p></p>
-					<p class="match-label"><input type="button" value="Display Data" id="displayButton" onclick="displayData()"><input type="button" value="Copy Data" id="copyButton" onclick="copyData()"></p>
-					<div id="clearButton">
-						<button type="button" class="clearForm" onclick="clearForm()">Clear Form</button>
-					</div>
-					<br>
-				</div>
-			</div>
-		</form>
-	</body>
+    /* ── CORNER BRACKETS ── */
+    .cbracket {
+      position: fixed; width: 16px; height: 16px;
+      pointer-events: none; z-index: 9001;
+    }
+    .cbracket.tl { top: 60px; left: 0; border-top: 2px solid var(--or); border-left: 2px solid var(--or); }
+    .cbracket.tr { top: 60px; right: 0; border-top: 2px solid var(--or); border-right: 2px solid var(--or); }
+    .cbracket.bl { bottom: 56px; left: 0; border-bottom: 2px solid var(--or); border-left: 2px solid var(--or); }
+    .cbracket.br { bottom: 56px; right: 0; border-bottom: 2px solid var(--or); border-right: 2px solid var(--or); }
+
+    /* ══════════════════════════════════════
+       PANEL OVERRIDES
+       CRITICAL: Never set display on .main-panel
+       scoutingPASS.css owns all display logic
+    ══════════════════════════════════════ */
+    .main-panel {
+      background-color: var(--bg) !important;
+      /* Push below fixed header+tabs+progress */
+      padding-top: 100px !important;
+      padding-left: 14px !important;
+      padding-right: 14px !important;
+      padding-bottom: 70px !important;
+      min-height: 100vh !important;
+    }
+
+    /* Hide original page titles and prev/next buttons */
+    .main-panel > h1,
+    .main-panel > h2 { display: none !important; }
+    .match-label { display: none !important; }
+
+    /* Section label injected above each table */
+    .oc-section {
+      font-family: var(--mono);
+      font-size: 9px; letter-spacing: 3px;
+      color: var(--or); text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .oc-section::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, var(--or), transparent);
+    }
+
+    /* ── TABLES ── */
+    #prematch_table, #auton_table, #teleop_table,
+    #endgame_table, #postmatch_table {
+      width: 100% !important;
+      border: none !important;
+      background: transparent !important;
+      border-collapse: collapse !important;
+    }
+    #prematch_table tr, #auton_table tr, #teleop_table tr,
+    #endgame_table tr, #postmatch_table tr {
+      border-bottom: 1px solid var(--border) !important;
+    }
+    #prematch_table td, #auton_table td, #teleop_table td,
+    #endgame_table td, #postmatch_table td {
+      color: var(--text) !important;
+      padding: 9px 6px !important;
+      vertical-align: middle !important;
+    }
+    .title {
+      font-family: var(--body) !important;
+      font-size: 13px !important;
+      color: var(--dim) !important;
+      text-align: right !important;
+      padding-right: 12px !important;
+    }
+    .field { text-align: left !important; }
+
+    /* ── INPUTS ── */
+    input[type="text"], input[type="number"], textarea, select {
+      font-family: var(--mono) !important;
+      font-size: 14px !important;
+      background: #181818 !important;
+      color: var(--text) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 3px !important;
+      padding: 7px 9px !important;
+      outline: none !important;
+      transition: border-color .15s !important;
+    }
+    input[type="text"]:focus, input[type="number"]:focus, textarea:focus {
+      border-color: var(--or) !important;
+      box-shadow: 0 0 0 2px var(--or-glow) !important;
+    }
+    input[type="radio"], input[type="checkbox"] {
+      accent-color: var(--or) !important;
+      width: 15px !important; height: 15px !important;
+    }
+    label {
+      font-family: var(--body) !important;
+      font-size: 13px !important;
+      color: var(--text) !important;
+    }
+
+    /* Counter/timer/start buttons */
+    input[type="button"]:not([id^="nextButton"]):not([id^="prevButton"]):not(#displayButton):not(#copyButton) {
+      background: var(--panel2) !important;
+      border: 1px solid var(--border) !important;
+      color: var(--text) !important;
+      font-family: var(--mono) !important;
+      font-size: 13px !important;
+      border-radius: 3px !important;
+      padding: 6px 13px !important;
+      cursor: pointer !important;
+      transition: border-color .15s !important;
+    }
+    input[type="button"]:not([id^="nextButton"]):not([id^="prevButton"]):not(#displayButton):not(#copyButton):hover {
+      border-color: var(--or) !important;
+      color: var(--or) !important;
+    }
+
+    /* Timer display inputs */
+    input.timer, input.cycle {
+      background: #000 !important;
+      color: var(--or) !important;
+      border: 1px solid var(--border) !important;
+      font-family: var(--mono) !important;
+      font-size: 18px !important;
+      border-radius: 3px !important;
+    }
+
+    /* ── QR PAGE ── */
+    #qr-code {
+      background: var(--bg) !important;
+      color: var(--text) !important;
+      text-align: center !important;
+    }
+    .oc-qr-title {
+      font-family: var(--mono);
+      font-size: 9px; letter-spacing: 3px;
+      color: var(--or); text-transform: uppercase;
+      margin: 18px 0 10px;
+    }
+    #submitButton, #clearButton { margin: 10px auto; max-width: 320px; }
+    .submitForm {
+      font-family: var(--head) !important; font-weight: 700 !important;
+      font-size: 15px !important; letter-spacing: 2px !important;
+      text-transform: uppercase !important;
+      padding: 14px !important; border-radius: 3px !important;
+      background: var(--or) !important; color: #000 !important;
+      border: none !important; width: 100% !important; cursor: pointer !important;
+      box-shadow: 0 0 20px var(--or-glow) !important;
+    }
+    .submitForm:hover { background: #ff6820 !important; }
+    .clearForm {
+      font-family: var(--head) !important; font-size: 14px !important;
+      letter-spacing: 2px !important; text-transform: uppercase !important;
+      padding: 11px !important; border-radius: 3px !important;
+      background: transparent !important; color: var(--dim) !important;
+      border: 1px solid #333 !important; width: 100% !important; cursor: pointer !important;
+    }
+    .clearForm:hover { border-color: #ff4444 !important; color: #ff4444 !important; }
+    #displayButton, #copyButton {
+      font-family: var(--head) !important; font-size: 12px !important;
+      font-weight: 600 !important; letter-spacing: 1px !important;
+      text-transform: uppercase !important; padding: 9px 18px !important;
+      background: var(--panel2) !important;
+      border: 1px solid var(--border) !important;
+      color: var(--dim) !important; border-radius: 3px !important; margin: 4px !important;
+      cursor: pointer !important;
+    }
+    #displayButton:hover, #copyButton:hover {
+      border-color: var(--or) !important; color: var(--or) !important;
+    }
+    #qrcode {
+      display: inline-block !important; padding: 12px !important;
+      background: #fff !important; border-radius: 4px !important; margin: 12px auto !important;
+    }
+    #qr-table { background: transparent !important; border: none !important; }
+    #qr-table td { background: transparent !important; color: var(--dim) !important; border: none !important; }
+    #data {
+      font-family: var(--mono) !important; font-size: 10px !important;
+      color: var(--dim) !important; word-break: break-all !important;
+      background: var(--panel) !important; border: 1px solid var(--border) !important;
+      border-radius: 3px !important; padding: 10px !important; text-align: left !important;
+    }
+    #export-status {
+      font-family: var(--mono) !important;
+      color: var(--or) !important; min-height: 22px !important;
+    }
+    #display_export-info, #display_qr-info {
+      font-family: var(--mono) !important; font-size: 11px !important; color: var(--dim) !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Fixed chrome — outside the form, never inside #main-panel-holder -->
+<div id="oc-header">
+  <span class="title">Orange Chaos 4564</span>
+  <span class="subtitle">SCOUTING // 2026</span>
+  <span class="dot"></span>
+</div>
+
+<div id="oc-tabs">
+  <button class="oc-tab active" onclick="ocTab(0)">PRE</button>
+  <button class="oc-tab" onclick="ocTab(1)">AUTO</button>
+  <button class="oc-tab" onclick="ocTab(2)">TELE</button>
+  <button class="oc-tab" onclick="ocTab(3)">END</button>
+  <button class="oc-tab" onclick="ocTab(4)">POST</button>
+  <button class="oc-tab" onclick="ocTab(5)">QR</button>
+</div>
+
+<div id="oc-progress" style="width:16.67%"></div>
+
+<div class="cbracket tl"></div><div class="cbracket tr"></div>
+<div class="cbracket bl"></div><div class="cbracket br"></div>
+
+<form id="scoutingForm" onsubmit="return false" name="scoutingForm">
+  <div id="main-panel-holder">
+
+    <div id="prematch" class="main-panel">
+      <h1 id="prematchHeader1" class="page_title" style="color:white;font-weight:bold;">ORANGE CHAOS 4564<br>Scouting 2026</h1>
+      <h2 id="prematchHeader2">pre-match</h2>
+      <p class="match-label"><input type="button" value="Next" id="nextButton1" onclick="swipePage(1)"></p>
+      <div class="oc-section">Pre-Match</div>
+      <table id="prematch_table" style="font:Roboto"><!-- ###PRE-MATCH-COMPONENTS###--></table>
+      <p class="match-label"><input type="button" value="Next" id="nextButton2" onclick="swipePage(1)"></p>
+    </div>
+
+    <div id="auton" class="main-panel">
+      <h1 id="autonHeader1" class="page_title" style="color:white;font-weight:bold;">ORANGE CHAOS 4564<br>Scouting 2026</h1>
+      <h2 id="autonHeader2">Auton</h2>
+      <p class="match-label"><input type="button" value="Prev" id="prevButton1" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton3" onclick="swipePage(1)"></p>
+      <div class="oc-section">Autonomous</div>
+      <table id="auton_table"><!-- ###AUTON-COMPONENTS###--></table>
+      <p class="match-label"><input type="button" value="Prev" id="prevButton2" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton4" onclick="swipePage(1)"></p>
+    </div>
+
+    <div id="teleop" class="main-panel">
+      <h1 id="teleopHeader1" class="page_title" style="color:white;font-weight:bold;">ORANGE CHAOS 4564<br>Scouting 2026</h1>
+      <h2 id="teleopHeader2">Teleop</h2>
+      <p class="match-label"><input type="button" value="Prev" id="prevButton3" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton5" onclick="swipePage(1)"></p>
+      <div class="oc-section">Teleoperated</div>
+      <table id="teleop_table"><!-- ###TELEOP-COMPONENTS###--></table>
+      <p class="match-label"><input type="button" value="Prev" id="prevButton4" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton6" onclick="swipePage(1)"></p>
+    </div>
+
+    <div id="endgame" class="main-panel">
+      <h1 id="endgameHeader1" class="page_title" style="color:white;font-weight:bold;">ORANGE CHAOS 4564<br>Scouting 2026</h1>
+      <h2 id="endgameHeader2">Endgame</h2>
+      <p class="match-label"><input type="button" value="Prev" id="prevButton5" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton7" onclick="swipePage(1)"></p>
+      <div class="oc-section">Endgame</div>
+      <table id="endgame_table"><!-- ###ENDGAME-COMPONENTS###--></table>
+      <p class="match-label"><input type="button" value="Prev" id="prevButton6" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton8" onclick="swipePage(1)"></p>
+    </div>
+
+    <div id="post-match" class="main-panel">
+      <h1 id="postmatchHeader" class="page_title" style="color:white;font-weight:bold;">ORANGE CHAOS 4564<br>Scouting 2026</h1>
+      <h2>Miscellaneous</h2>
+      <p class="match-label"><input type="button" value="Prev" id="prevButton7" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton9" onclick="swipePage(1)"></p>
+      <div class="oc-section">Post-Match</div>
+      <table id="postmatch_table"><!-- ###POST-MATCH-COMPONENTS###--></table>
+      <p class="match-label"><input type="button" value="Prev" id="prevButton8" onclick="swipePage(-1)"><input type="button" value="Next" id="nextButton10" onclick="swipePage(1)"></p>
+    </div>
+
+    <div id="qr-code" class="main-panel">
+      <h1 id="qrHeader1" class="page_title" style="color:white;font-weight:bold;">ORANGE CHAOS 4564<br>Scouting 2026</h1>
+      <h2 id="qrHeader2">Generate Export File</h2>
+      <p class="match-label"><input type="button" value="Prev" id="prevButton9" onclick="swipePage(-1)"></p>
+      <script>window.goatcounter={path:function(p){return location.host+p}}</script>
+      <script data-goatcounter="https://scoutingpass.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+      <div class="oc-qr-title">Export</div>
+      <p id="export-info"><span id="display_export-info" style="border:none;text-align:center;"></span></p>
+      <div id="submitButton">
+        <button id="exportButton" type="button" class="submitForm" onclick="generateExportFile()">Generate Export File</button>
+      </div>
+      <p id="export-status" style="text-align:center"></p>
+      <div class="oc-qr-title">Backup QR Code</div>
+      <p id="qr-info"><span id="display_qr-info" style="border:none;text-align:center;"></span></p>
+      <table id="qr-table"><tr><td width="5%">&nbsp;</td><td width="90%">
+        <div id="qrcode" style="text-align:center">
+          <script>qr = new QRCode(document.getElementById("qrcode"), options)</script>
+        </div>
+      </td><td width="5%">&nbsp;</td></tr>
+      <tr><td width="5%">&nbsp;</td><td width="90%">
+        <div><p id="data" style="text-align:center"></p></div>
+      </td><td width="5%">&nbsp;</td></tr></table>
+      <p style="text-align:center;margin-top:12px;">
+        <input type="button" value="Display Data" id="displayButton" onclick="displayData()">
+        <input type="button" value="Copy Data" id="copyButton" onclick="copyData()">
+      </p>
+      <div id="clearButton">
+        <button type="button" class="clearForm" onclick="clearForm()">Clear Form</button>
+      </div><br>
+    </div>
+
+  </div>
+</form>
+
+<div id="oc-nav">
+  <button class="oc-nav-btn" id="oc-prev" onclick="ocStep(-1)" style="visibility:hidden">← Prev</button>
+  <span class="oc-step" id="oc-step">01 / 06</span>
+  <button class="oc-nav-btn" id="oc-next" onclick="ocStep(1)">Next →</button>
+</div>
+
+<script>
+  var ocCurrent = 0;
+  var ocPanels = ['prematch','auton','teleop','endgame','post-match','qr-code'];
+
+  function ocTab(idx) {
+    ocCurrent = idx;
+    document.querySelectorAll('.oc-tab').forEach(function(t,i){ t.classList.toggle('active', i===idx); });
+    document.getElementById('oc-step').textContent = String(idx+1).padStart(2,'0')+' / 06';
+    document.getElementById('oc-progress').style.width = ((idx+1)/6*100)+'%';
+    document.getElementById('oc-prev').style.visibility = idx===0 ? 'hidden' : 'visible';
+    document.getElementById('oc-next').textContent = idx===5 ? 'Done' : 'Next →';
+  }
+
+  function ocStep(dir) {
+    var next = ocCurrent + dir;
+    if (next >= 0 && next < 6) {
+      ocTab(next);
+      if (typeof swipePage === 'function') swipePage(dir);
+    }
+  }
+
+  // Keep tabs in sync when scoutingPASS.js swipes (touch gestures etc.)
+  window.addEventListener('load', function() {
+    var obs = new MutationObserver(function() {
+      ocPanels.forEach(function(id, i) {
+        var el = document.getElementById(id);
+        if (el && el.style.display && el.style.display !== 'none' && ocCurrent !== i) {
+          ocTab(i);
+        }
+      });
+    });
+    ocPanels.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) obs.observe(el, {attributes:true, attributeFilter:['style']});
+    });
+  });
+</script>
+
+</body>
 </html>
-
-
