@@ -90,6 +90,17 @@ var config_data = `
       "type": "bool"
     },
 
+    { "name": "Aiming Method",
+      "code": "aim",
+      "type": "radio",
+      "choices": {
+        "ll": "Limelight / Vision<br>",
+        "man": "Manual<br>",
+        "both": "Both<br>"
+      },
+      "defaultValue": "man"
+    },
+
     { "name": "Go Over Bump",
       "code": "gob",
       "type": "bool"
@@ -140,5 +151,9 @@ var config_data = `
   "endgame": [
   ],
   "postmatch": [
+    { "name": "Is Defense Bot",
+      "code": "idb",
+      "type": "bool"
+    }
   ]
 }`;
