@@ -107,9 +107,9 @@ var config_data = `
       "type": "bool"
     },
 
-    { "name": "Cycle Time (# of shooting cycles completed)",
-      "code": "ct",
-      "type": "counter"
+    { "name": "Can Shoot?",
+      "code": "cs",
+      "type": "bool"
     }
 
   ],
@@ -145,6 +145,28 @@ var config_data = `
 
   ],
   "postmatch": [
+
+    { "name": "Is Defense Bot",
+      "code": "idb",
+      "type": "bool"
+    },
+
+    { "name": "Accuracy Class",
+      "code": "ac",
+      "type": "radio",
+      "choices": {
+        "1": "1 - Low<br>",
+        "2": "2 - Medium<br>",
+        "3": "3 - High<br>"
+      },
+      "defaultValue": "1"
+    },
+
+    { "name": "Estimated Score Per Volley",
+      "code": "espv",
+      "type": "number",
+      "defaultValue": "0"
+    },
 
     { "name": "Energized",
       "code": "egz",
