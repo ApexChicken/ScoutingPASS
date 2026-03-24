@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orange Chaos — FRC Team 4564</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --accent: orangered;
+      --text: #ffffff;
+      --muted: #777777;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'IBM Plex Sans', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255,69,0,0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,69,0,0.035) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+    }
+
+    .gate {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lockup {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadein 0.4s ease 0.1s forwards;
+    }
+
+    .team-name {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .team-num {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    .input-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadein 0.4s ease 0.25s forwards;
+    }
+
+    input[type="password"] {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      padding: 0.75rem 1.25rem;
+      width: 240px;
+      outline: none;
+      transition: border-color 0.2s;
+      text-align: center;
+    }
+
+    input[type="password"]::placeholder {
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    input[type="password"]:focus { border-color: var(--accent); }
+
+    input.error {
+      border-color: #cc2200;
+      animation: shake 0.3s ease;
+    }
+
+    .error-msg {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #cc2200;
+      height: 1em;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .error-msg.visible { opacity: 1; }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+
+    @keyframes fadein { to { opacity: 1; } }
+
+    footer {
+      position: fixed;
+      bottom: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--border);
+    }
+  </style>
+</head>
+<body>
+  <div class="gate">
+    <div class="lockup">
+      <span class="team-name">Orange Chaos</span>
+      <span class="team-num">FRC #4564</span>
+    </div>
+    <div class="input-wrap">
+      <input type="password" id="pw" placeholder="enter password" autofocus autocomplete="off" />
+      <div class="error-msg" id="err">Incorrect password</div>
+    </div>
+  </div>
+  <footer>Team access only</footer>
+
+  <script>
+    const input = document.getElementById('pw');
+    const err = document.getElementById('err');
+
+    // if already authed, skip straight to home
+    if (document.cookie.split(';').some(c => c.trim() === 'oc_auth=true')) {
+      window.location.replace('home.html');
+    }
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') attempt();
+    });
+
+    function attempt() {
+      if (input.value === '4theteam!') {
+        // cookie expires in 7 days
+        const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString();
+        document.cookie = 'oc_auth=true; expires=' + expires + '; path=/';
+        window.location.replace('home.html');
+      } else {
+        input.classList.remove('error');
+        void input.offsetWidth;
+        input.classList.add('error');
+        err.classList.add('visible');
+        input.value = '';
+        setTimeout(() => input.classList.remove('error'), 350);
+      }
+    }
+  </script>
+</body>
+</html>
