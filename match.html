@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
+  html<script>
+    if (!document.cookie.split(';').some(c => c.trim() === 'oc_auth=true')) {
+      window.location.replace('404.html');
+    }
+  </script>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1.0">
   <title>Scouting PASS</title>
   <link rel="shortcut icon" href="favicon.ico">
