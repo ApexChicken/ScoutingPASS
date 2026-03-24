@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orange Chaos — FRC Team 4564</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --accent: orangered;
+      --accent-dim: rgba(255, 69, 0, 0.08);
+      --text: #ffffff;
+      --muted: #777777;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'IBM Plex Sans', sans-serif;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* subtle grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255,69,0,0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,69,0,0.035) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(8px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .logo-name {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .logo-num {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 7rem 2.5rem 6rem;
+      max-width: 960px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 600;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.3em;
+    }
+
+    h1 .team-num {
+      display: block;
+      font-size: 0.28em;
+      font-weight: 400;
+      font-family: var(--mono);
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 0.4em;
+      text-transform: uppercase;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 480px;
+    }
+
+    /* ── STATS BAR ── */
+    .stats {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat {
+      padding: 2rem 2.5rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-val {
+      font-family: var(--mono);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-val span {
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      padding: 3rem 2.5rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .section-header h2 {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .section-header .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── CARDS GRID ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card {
+      background: var(--bg);
+      padding: 2rem 2.5rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: background 0.18s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.22s ease;
+    }
+
+    .card:hover { background: var(--surface); }
+    .card:hover::after { transform: scaleX(1); }
+
+    .card-tag {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .card .cta {
+      display: inline-block;
+      margin-top: 1.25rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ── ABOUT STRIP ── */
+    .about {
+      padding: 3.5rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .about p + p { margin-top: 1rem; }
+
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .pill {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .pill.accent {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 0.5rem;
+      animation: blink 2.5s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.25; }
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadein 0.55s ease forwards;
+    }
+
+    .fade-in:nth-child(1) { animation-delay: 0.05s; }
+    .fade-in:nth-child(2) { animation-delay: 0.15s; }
+    .fade-in:nth-child(3) { animation-delay: 0.25s; }
+    .fade-in:nth-child(4) { animation-delay: 0.35s; }
+
+    @keyframes fadein {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .hero { padding: 4rem 1.25rem 3rem; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stat:nth-child(3) { border-right: none; grid-column: span 2; border-top: 1px solid var(--border); }
+      .section-header, .about, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .about { grid-template-columns: 1fr; gap: 2rem; }
+      .card { padding: 1.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">
+      <span class="logo-name">Orange Chaos</span>
+      <span class="logo-num">#4564</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="https://scout.yourdomain.com">Scout</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tag fade-in">FRC Team 4564</div>
+    <h1 class="fade-in">
+      <span class="team-num">First Robotics Competition</span>
+      Orange<br><em>Chaos.</em>
+    </h1>
+    <p class="hero-sub fade-in">
+      Building competitive robots and cultivating engineering talent since 2012. 
+      Twenty members. One build season. Every match counts.
+    </p>
+  </div>
+
+  <div class="stats">
+    <div class="stat fade-in">
+      <div class="stat-val">13<span>yrs</span></div>
+      <div class="stat-label">Years Active</div>
+    </div>
+    <div class="stat fade-in">
+      <div class="stat-val">~20</div>
+      <div class="stat-label">Members</div>
+    </div>
+    <div class="stat fade-in">
+      <div class="stat-val"><span>#</span>4564</div>
+      <div class="stat-label">Team Number</div>
+    </div>
+  </div>
+
+  <section id="tools">
+    <div class="section-header">
+      <h2>Scouting Tools</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="cards">
+      <a class="card" href="https://scout.yourdomain.com">
+        <div class="card-tag">→ Match</div>
+        <h3>Match Scouting</h3>
+        <p>Track robot performance in real-time across all phases of play. No internet required.</p>
+        <span class="cta">Launch app ↗</span>
+      </a>
+      <a class="card" href="https://scout.yourdomain.com/pit.html">
+        <div class="card-tag">→ Pit</div>
+        <h3>Pit Scouting</h3>
+        <p>Capture drivetrain specs, autos, and drive team notes directly at the pit.</p>
+        <span class="cta">Launch app ↗</span>
+      </a>
+      <a class="card" href="#">
+        <div class="card-tag">→ Export</div>
+        <h3>Data & QR Export</h3>
+        <p>Export scouting data via QR code for fast transfer between devices.</p>
+        <span class="cta">Learn more ↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-header">
+      <h2>About the Team</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about">
+      <div>
+        <p>
+          Orange Chaos has competed in FIRST Robotics Competition since 2012, bringing together 
+          students passionate about engineering, software, and design. We're a team that builds 
+          from the ground up — mechanical, electrical, and software all in-house.
+        </p>
+        <p>
+          Our scouting platform, ScoutingPASS, is built and maintained by the team itself — 
+          designed to give us a competitive edge in alliance selection and match strategy.
+        </p>
+      </div>
+      <div class="about-right">
+        <div class="pill-row">
+          <span class="pill accent">FRC 4564</span>
+          <span class="pill accent">Since 2012</span>
+          <span class="pill">Mechanical</span>
+          <span class="pill">Electrical</span>
+          <span class="pill">Software</span>
+          <span class="pill">Strategy</span>
+          <span class="pill">Design</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><span class="status-dot"></span>Orange Chaos &mdash; FRC 4564</p>
+    <p>Built by the team</p>
+  </footer>
+
+</body>
+</html>
