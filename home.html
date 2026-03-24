@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
+  html<script>
+    if (!document.cookie.split(';').some(c => c.trim() === 'oc_auth=true')) {
+      window.location.replace('404.html');
+    }
+  </script>
+  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Orange Chaos — FRC Team 4564</title>
