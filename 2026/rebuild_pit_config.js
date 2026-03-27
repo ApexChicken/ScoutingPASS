@@ -32,7 +32,7 @@ var config_data = `
       "defaultValue": "0"
     },
 
-    { "name": "Weight(lbs) w/battery",
+    { "name": "Weight(lbs) w/o battery",
       "code": "wei",
       "type": "number",
       "defaultValue": "0"
@@ -122,13 +122,6 @@ var config_data = `
         "3": "Level 3<br>"
       },
       "defaultValue":"0"
-    },
-
-    { "name": "Autos Description",
-      "code": "aut",
-      "type": "text",
-      "size": 20,
-      "maxSize": 250
     },
 
     { "name": "Auto Score Amount",

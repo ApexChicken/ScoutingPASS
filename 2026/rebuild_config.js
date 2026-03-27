@@ -58,7 +58,7 @@ var config_data = `
     }
   ],
   "auton": [
-    { "name": "Leave Starting Line",
+    { "name": "Moved",
       "code": "al",
       "type": "bool"
     },
@@ -98,15 +98,6 @@ var config_data = `
       "type": "bool"
     },
 
-    { "name": "Goes Under Trench",
-      "code": "gut",
-      "type": "bool"
-    },
-    { "name": "Goes Over Bump",
-      "code": "gob",
-      "type": "bool"
-    },
-
     { "name": "Can Shoot?",
       "code": "cs",
       "type": "bool"
@@ -114,41 +105,34 @@ var config_data = `
 
   ],
   "endgame": [
-    { "name": "Climb Timer",
-      "code": "clt",
-      "type": "timer"
+    { "name": "Did Climb",
+      "code": "dc",
+      "type": "bool"
     },
-    { "name": "Climb Level",
-      "code": "cl",
+    { "name": "Final Position",
+      "code": "fp",
       "type": "radio",
       "choices": {
-        "l1": "L1<br>",
-        "l2": "L2<br>",
-        "l3": "L3<br>",
-        "fc": "Failed Climb<br>",
-        "x": "Not attempted"
+        "nc": "Didn't Climb<br>",
+        "pk": "Parked<br>",
+        "l1": "Level 1<br>",
+        "l2": "Level 2<br>",
+        "l3": "Level 3"
       },
-      "defaultValue": "x"
-    },
-
-    { "name": "Climb Position",
-      "code": "clp",
-      "type": "radio",
-      "choices": {
-        "lt": "Left<br>",
-        "ct": "Center<br>",
-        "rt": "Right<br>",
-        "bk": "Back<br>"
-      } 
+      "defaultValue": "nc"
     }
-
-
   ],
   "postmatch": [
 
-    { "name": "Is Defense Bot",
-      "code": "idb",
-      "type": "bool"
+    { "name": "Defense Status",
+      "code": "ds",
+      "type": "radio",
+      "choices": {
+        "n": "No/Normal Defense<br>",
+        "s": "Switched to Defense<br>",
+        "e": "Entirely Defense"
+      },
+      "defaultValue": "n"
     },
 
     { "name": "Accuracy Class",
@@ -188,14 +172,14 @@ var config_data = `
     
     },
 
-    { "name": "Negative Atrributes",
+    { "name": "Negative Attributes",
       "code": "na",
       "type": "checkbox",
       "choices": {
-        "tll": "Took too long to line up wigth april tags<br>",
+        "tll": "Took too long to line up with AprilTags<br>",
         "rir": "Ran into objects/other robots<br>",
         "bi": "Broke down/immobilized<br>",
-        "tu": "Tippy/unsturdy<br>"
+        "tu": "Tippy/unstable<br>"
       }
     
     },
