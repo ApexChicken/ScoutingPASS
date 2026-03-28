@@ -15,7 +15,7 @@ var config_data = `
     { "name": "Event",
       "code": "e",
       "type": "event",
-      "defaultValue": "2026mefal",
+      "defaultValue": "2026nhdur",
       "required": "false"
     },
     { "name": "Match Level",
