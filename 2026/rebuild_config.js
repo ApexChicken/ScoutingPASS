@@ -82,6 +82,40 @@ var config_data = `
     { "name": "Collect From Neutral Zone",
       "code": "cfna",
       "type": "bool"
+    },
+
+    { "name": "auto position",
+      "code": "ap",
+      "type": "radio",
+      "choices": {
+        "l": "left<br>",
+        "c": "center<br>",
+        "r": "right<br>"
+      },
+      "defaultValue": ""
+    },
+
+    { "name": "auto description (pick closest)",
+      "code": "ad",
+      "type": "checkbox",
+      "choices": {
+        "n": "none<br>",
+        "s": "scored pre-load<br>",
+        "d": "collected from depot<br>",
+        "z": "collected from neutral zone<br>"
+      },
+      "defaultValue": ""
+    },
+
+    { "name": "auto accuracy",
+      "code": "aa",
+      "type": "radio",
+      "choices": {
+        "1": "1 - Low<br>",
+        "2": "2 - Medium<br>",
+        "3": "3 - High<br>"
+      },
+      "defaultValue": ""
     }
 
   ],
@@ -101,6 +135,12 @@ var config_data = `
     { "name": "Can Shoot?",
       "code": "cs",
       "type": "bool"
+    },
+
+    { "name": "cycle count",
+      "code": "cc",
+      "type": "counter",
+      "defaultValue": "0"
     }
 
   ],
