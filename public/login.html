@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCOUTING PASS — LOGIN</title>
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@400;500&display=swap">
+  <style>
+    :root {
+      --or: #FF5500;
+      --or-glow: rgba(255,85,0,0.18);
+      --bg: #0a0a0a;
+      --panel: #101010;
+      --panel2: #151515;
+      --border: #252525;
+      --text: #e0e0e0;
+      --dim: #666;
+      --err: #ff4444;
+      --mono: 'Share Tech Mono', monospace;
+      --head: 'Barlow Condensed', sans-serif;
+      --body: 'Barlow', sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.035) 2px, rgba(0,0,0,0.035) 4px);
+      pointer-events: none; z-index: 9000;
+    }
+    .card {
+      width: 100%;
+      max-width: 380px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--or);
+      box-shadow: 0 4px 30px var(--or-glow);
+      padding: 28px 24px;
+    }
+    h1 {
+      font-family: var(--head);
+      font-weight: 900;
+      font-size: 26px;
+      letter-spacing: 4px;
+      color: var(--or);
+      text-transform: uppercase;
+      margin: 0 0 4px;
+    }
+    .subtitle {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--dim);
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin: 14px 0 6px;
+    }
+    input {
+      width: 100%;
+      background: var(--panel2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 14px;
+      padding: 10px 12px;
+      outline: none;
+      transition: border-color .15s;
+    }
+    input:focus {
+      border-color: var(--or);
+    }
+    button {
+      width: 100%;
+      margin-top: 22px;
+      background: var(--or);
+      color: #000;
+      border: none;
+      font-family: var(--head);
+      font-weight: 900;
+      font-size: 15px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 12px;
+      cursor: pointer;
+      transition: filter .15s;
+    }
+    button:hover:not(:disabled) { filter: brightness(1.1); }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .err {
+      color: var(--err);
+      font-family: var(--mono);
+      font-size: 11px;
+      margin-top: 14px;
+      min-height: 14px;
+    }
+    .footer {
+      margin-top: 18px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--dim);
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .footer a { color: var(--or); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <form class="card" id="form" autocomplete="on">
+    <h1>SCOUTING PASS</h1>
+    <div class="subtitle">// AUTHENTICATION REQUIRED</div>
+
+    <label for="username">USERNAME</label>
+    <input id="username" name="username" type="text" autocomplete="username" required autofocus>
+
+    <label for="password">PASSWORD</label>
+    <input id="password" name="password" type="password" autocomplete="current-password" required>
+
+    <button type="submit" id="submit">LOG IN</button>
+    <div class="err" id="err"></div>
+    <div class="footer" id="footer"></div>
+  </form>
+
+  <script>
+    const form = document.getElementById('form');
+    const errEl = document.getElementById('err');
+    const submit = document.getElementById('submit');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errEl.textContent = '';
+      submit.disabled = true;
+      try {
+        const res = await fetch('/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username: form.username.value.trim(),
+            password: form.password.value,
+          }),
+        });
+        if (res.ok) {
+          window.location.href = '/';
+          return;
+        }
+        const data = await res.json().catch(() => ({}));
+        errEl.textContent = res.status === 429
+          ? 'too many attempts, slow down'
+          : (data.error || 'login failed');
+      } catch {
+        errEl.textContent = 'network error';
+      } finally {
+        submit.disabled = false;
+      }
+    });
+
+    // Show register link only if registration is enabled.
+    fetch('/register', { method: 'GET', redirect: 'manual' })
+      .then((r) => {
+        if (r.type === 'opaqueredirect' || r.status === 0) return; // redirected = disabled
+        if (r.status === 200) {
+          document.getElementById('footer').innerHTML =
+            'no account? <a href="/register">register</a>';
+        }
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>

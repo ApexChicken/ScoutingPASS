@@ -1,0 +1,16 @@
+.git
+.github
+.gitignore
+.dockerignore
+.DS_Store
+**/.DS_Store
+node_modules
+**/node_modules
+npm-debug.log
+.env
+.env.*
+!.env.example
+docs
+README_old.md
+LICENSE
+*.md
